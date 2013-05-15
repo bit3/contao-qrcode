@@ -10,7 +10,7 @@
 
 
 // load qr library
-require_once(TL_ROOT . '/system/modules/core/vendor/phpqrcode/qrlib.php');
+require_once(TL_ROOT . '/system/modules/qrcode/vendor/phpqrcode/qrlib.php');
 
 
 /**
@@ -165,5 +165,3 @@ class QRCodeGenerator extends Controller
 		}
 	}
 }
-
-?>
