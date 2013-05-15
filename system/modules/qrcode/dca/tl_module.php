@@ -1,35 +1,12 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /**
- * Contao Open Source CMS
- * Copyright (C) 2005-2010 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
  * PHP version 5
- * @copyright  InfinitySoft 2011
+ * @copyright  InfinitySoft 2011 - 2013
  * @author     Tristan Lins <tristan.lins@infinitysoft.de>
  * @package    QRCode
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
-
-
-$this->loadLanguageFile('tl_content');
-$this->loadDataContainer('tl_content');
 
 /**
  * Add palettes to tl_module
@@ -42,21 +19,24 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['qrcode'] = '{title_legend},name,typ
 $GLOBALS['TL_DCA']['tl_module']['fields']['qrcode'] = array(
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['qrcode'],
 	'inputType'               => 'textarea',
-	'eval'                    => array('mandatory'=>true, 'decodeEntities'=>true, 'tl_class'=>'clr')
+	'eval'                    => array('mandatory'=>true, 'decodeEntities'=>true, 'tl_class'=>'clr'),
+  'sql'                     => "text NULL"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['qrcode_size'] = array(
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['qrcode_size'],
 	'default'                 => '3',
 	'inputType'               => 'select',
 	'options'                 => array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40'),
-	'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr w50')
+	'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr w50'),
+  'sql'                     => "int(2) NOT NULL default '3'"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['qrcode_margin'] = array(
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['qrcode_margin'],
 	'default'                 => '3',
 	'inputType'               => 'select',
 	'options'                 => array('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40'),
-	'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50')
+	'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+  'sql'                     => "char(1) NOT NULL default 'L'"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['qrcode_ecclevel'] = array(
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['qrcode_ecclevel'],
@@ -64,12 +44,49 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['qrcode_ecclevel'] = array(
 	'inputType'               => 'select',
 	'options'                 => array('L','M','Q','H'),
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module']['qrcode_ecclevels'],
-	'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50')
+	'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+  'sql'                     => "char(1) NOT NULL default 'L'"
 );
-
-$GLOBALS['TL_DCA']['tl_module']['fields']['alt']         = $GLOBALS['TL_DCA']['tl_content']['fields']['alt'];
-$GLOBALS['TL_DCA']['tl_module']['fields']['imagemargin'] = $GLOBALS['TL_DCA']['tl_content']['fields']['imagemargin'];
-$GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl']    = $GLOBALS['TL_DCA']['tl_content']['fields']['imageUrl'];
-$GLOBALS['TL_DCA']['tl_module']['fields']['caption']     = $GLOBALS['TL_DCA']['tl_content']['fields']['caption'];
-
-?>
+$GLOBALS['TL_DCA']['tl_module']['fields']['alt']         = array(
+	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['alt'],
+  'exclude'                 => true,
+  'search'                  => true,
+  'inputType'               => 'text',
+  'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
+  'sql'                     => "varchar(255) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['imagemargin'] = array(
+	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['imagemargin'],
+  'exclude'                 => true,
+  'inputType'               => 'trbl',
+  'options'                 => array('px', '%', 'em', 'ex', 'pt', 'pc', 'in', 'cm', 'mm'),
+  'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+  'sql'                     => "varchar(128) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl']    = array(
+	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl'],
+  'exclude'                 => true,
+  'search'                  => true,
+  'inputType'               => 'text',
+  'eval'                    => array('rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50 wizard'),
+  'wizard' => array
+  (
+    array('tl_content', 'pagePicker')
+  ),
+  'sql'                     => "varchar(255) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['caption']     = array(
+	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['caption'],
+  'exclude'                 => true,
+  'search'                  => true,
+  'inputType'               => 'text',
+  'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
+  'sql'                     => "varchar(255) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['fullsize']     = array(
+	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['fullsize'],
+  'exclude'                 => true,
+  'inputType'               => 'checkbox',
+  'eval'                    => array('tl_class'=>'w50 m12'),
+  'sql'                     => "char(1) NOT NULL default ''"
+);
