@@ -12,10 +12,10 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_content']['qrcode']          = array('Text', '');
-$GLOBALS['TL_LANG']['tl_content']['qrcode_size']     = array('Size', '');
-$GLOBALS['TL_LANG']['tl_content']['qrcode_margin']   = array('Border', '');
-$GLOBALS['TL_LANG']['tl_content']['qrcode_ecclevel'] = array('Error Correction capacity', '');
+$GLOBALS['TL_LANG']['tl_content']['qrcode']          = array('Text', 'Please enter the text for the QR code.');
+$GLOBALS['TL_LANG']['tl_content']['qrcode_size']     = array('Size', 'Please select the size of the QR code.');
+$GLOBALS['TL_LANG']['tl_content']['qrcode_margin']   = array('Border', 'Please select the size of the border around the QR code.');
+$GLOBALS['TL_LANG']['tl_content']['qrcode_ecclevel'] = array('Error Correction capacity', 'Please select the error correction level of the QR Code.');
 
 
 /**

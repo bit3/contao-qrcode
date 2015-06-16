@@ -48,7 +48,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['qrcode_ecclevel'] = array(
   'sql'                     => "char(1) NOT NULL default 'L'"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['alt']         = array(
-	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['alt'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['alt'],
   'exclude'                 => true,
   'search'                  => true,
   'inputType'               => 'text',
@@ -56,7 +56,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['alt']         = array(
   'sql'                     => "varchar(255) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['imagemargin'] = array(
-	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['imagemargin'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['imagemargin'],
   'exclude'                 => true,
   'inputType'               => 'trbl',
   'options'                 => array('px', '%', 'em', 'ex', 'pt', 'pc', 'in', 'cm', 'mm'),
@@ -64,7 +64,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['imagemargin'] = array(
   'sql'                     => "varchar(128) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl']    = array(
-	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['imageUrl'],
   'exclude'                 => true,
   'search'                  => true,
   'inputType'               => 'text',
@@ -76,7 +76,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl']    = array(
   'sql'                     => "varchar(255) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['caption']     = array(
-	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['caption'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['caption'],
   'exclude'                 => true,
   'search'                  => true,
   'inputType'               => 'text',
@@ -84,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['caption']     = array(
   'sql'                     => "varchar(255) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['fullsize']     = array(
-	'label'                   => &$GLOBALS['TL_DCA']['tl_module']['fields']['fullsize'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['fullsize'],
   'exclude'                 => true,
   'inputType'               => 'checkbox',
   'eval'                    => array('tl_class'=>'w50 m12'),

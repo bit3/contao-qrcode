@@ -8,11 +8,6 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-
-// load qr library
-require_once(TL_ROOT . '/system/modules/qrcode/vendor/phpqrcode/qrlib.php');
-
-
 /**
  * Class QRCode 
  *
@@ -88,7 +83,7 @@ class QRCodeGenerator extends Controller
 		
 		if (!file_exists(TL_ROOT . '/' . $strFile))
 		{
-			QRcode::png($strContent, TL_ROOT . '/' . $strFile, $intEclevel, $intSize, $intMargin);
+            \PHPQRCode\QRcode::png($strContent, TL_ROOT . '/' . $strFile, $intEclevel, $intSize, $intMargin);
 		}
 		
 		return $strFile;
@@ -148,7 +143,7 @@ class QRCodeGenerator extends Controller
 		
 		if ($size[0] > 0 || $size[1] > 0)
 		{
-			$objTemplate->src    = $this->getImage($objTemplate->qrcode, $size[0], $size[1], $size[2]);
+			$objTemplate->src    = \Image::get($objTemplate->qrcode, $size[0], $size[1], $size[2]);
 			$objTemplate->width  = $size[0];
 			$objTemplate->height = $size[1];
 		}
