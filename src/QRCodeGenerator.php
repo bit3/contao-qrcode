@@ -52,9 +52,9 @@ class QRCodeGenerator extends Controller
 	 * @param int $intSize
 	 * @param int $intMargin
 	 */
-	public static function generate($strContent, $intEclevel = QR_ECLEVEL_L, $intSize = 3, $intMargin = 4)
+	public static function generate($strContent, $intEclevel = QR_ECLEVEL_L, $intSize = 3, $intMargin = 4, $targetDir = 'files/qr-codes/')
 	{
-		return self::getInstance()->_generate($strContent, $intEclevel, $intSize, $intMargin);
+		return self::getInstance()->_generate($strContent, $intEclevel, $intSize, $intMargin, $targetDir);
 	}
 	
 	
@@ -66,7 +66,7 @@ class QRCodeGenerator extends Controller
 	 * @param int $intSize
 	 * @param int $intMargin
 	 */
-	protected function _generate($strContent, $intEclevel = QR_ECLEVEL_L, $intSize = 3, $intMargin = 4)
+	protected function _generate($strContent, $intEclevel = QR_ECLEVEL_L, $intSize = 3, $intMargin = 4, $targetDir = 'files/qr-codes/')
 	{
 		if (is_string($intEclevel))
 		{
@@ -79,7 +79,7 @@ class QRCodeGenerator extends Controller
 			}
 		}
 		
-		$strFile = 'assets/images/qrcode-' . substr(md5($intEclevel.'-'.$intSize.'-'.$intMargin.'-'.$strContent), 0, 8) . '.png';
+		$strFile = $targetDir . 'qrcode-' . substr(md5($intEclevel.'-'.$intSize.'-'.$intMargin.'-'.$strContent), 0, 8) . '.png';
 		
 		if (!file_exists(TL_ROOT . '/' . $strFile))
 		{
