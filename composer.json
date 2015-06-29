@@ -44,7 +44,7 @@
         "src": "system/modules/qrcode"
       },
       "userfiles": {
-        "qr-codes": "files/qr-codes"
+        "": "files/qr-codes"
       }
     }
   }
