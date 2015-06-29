@@ -42,6 +42,9 @@
     "contao": {
       "sources":{
         "src": "system/modules/qrcode"
+      },
+      "userfiles": {
+        "files/qr-codes": "files/qr-codes"
       }
     }
   }
