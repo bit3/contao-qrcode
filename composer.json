@@ -1,0 +1,51 @@
+{
+  "name":"kirsten-roschanski/contao-qrcode",
+  "description":"Contao QR-Code",
+  "keywords":["contao", "qrcode", "helper"],
+  "type":"contao-module",
+  "homepage":"",
+  "license":"LGPL-3.0+",
+  "authors":[
+
+    {
+      "name":"Tristan Lins",
+      "email":"tristan.lins@bit3.de",
+      "homepage":"http://bit3.de",
+      "role":"Developer"
+    },
+    {
+      "name":"Kirsten Roschanski",
+      "email":"git@kirsten-roschanski.de",
+      "homepage":"http://kirsten-roschanski.de",
+      "role":"Developer"
+    },
+    {
+      "name":"Mathias Arzberger",
+      "email":"develop@pdir.de",
+      "homepage":"http://pdir.de",
+      "role":"Developer"
+    }
+
+  ],
+  "support":{
+    "issues":"https://github.com/kirsten-roschanski/contao-qrcode/issues",
+    "wiki":"https://github.com/kirsten-roschanski/contao-qrcode/wiki",
+    "irc":"irc://irc.freenode.org/contao.dev",
+    "source":"https://github.com/kirsten-roschanski/contao-qrcode" 
+  },
+  "require":{
+    "php":">=5.3",
+    "contao/core":">=3.2,<4",
+    "aferrandini/phpqrcode": "1.0.1"
+  },
+  "extra":{
+    "contao": {
+      "sources":{
+        "src": "system/modules/qrcode"
+      },
+      "userfiles": {
+        "data": "qr-codes"
+      }
+    }
+  }
+}
